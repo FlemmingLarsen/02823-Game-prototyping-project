@@ -23,9 +23,9 @@ public class BirdMovement : MonoBehaviour {
 
     void Update()
     {
-        int f = (int)micIn.loudness; // Get the frequency from our MicrophoneInput script
+        int f = (int)micIn.frequency; // Get the frequency from our MicrophoneInput script
 
-        if (Input.GetKeyDown("space"))
+        if (f > 70)
         {
             didFlap = true;
         }
