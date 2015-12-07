@@ -11,6 +11,10 @@ public class BirdMovement : MonoBehaviour {
     public Vector3 flapVelocity;
     public float maxSpeed = 5f;
     public float forwardSpeed = 1f;
+    public Vector3 oldPos;
+    public Vector3 posDifference;
+
+    public float ypos = 1f;
 
     bool didFlap = false;
 
@@ -24,16 +28,22 @@ public class BirdMovement : MonoBehaviour {
     void Update()
     {
         int f = (int)micIn.frequency; // Get the frequency from our MicrophoneInput script
-
-        if (f > 70)
+        ypos = f / 60f + 0.5f;
+        float l = (float)micIn.loudness;
+        float lt = (float)micIn.loudnessThreshold;
+        if (l > lt && f > 20)
         {
-            didFlap = true;
+            oldPos = transform.position;
+            transform.position = new Vector3(0f, ypos, 0f);
+            float angle = 0;
+            posDifference = oldPos - transform.position;
+            transform.rotation = Quaternion.Euler(0, 0, -posDifference.y * 50);
         }
     }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        int f = (int)micIn.frequency; // Get the frequency from our MicrophoneInput script
+        /*int f = (int)micIn.frequency; // Get the frequency from our MicrophoneInput script
         velocity.x = forwardSpeed;
         velocity += gravity * Time.deltaTime;
 
@@ -47,6 +57,8 @@ public class BirdMovement : MonoBehaviour {
             velocity += flapVelocity;
         }
 
+        
+
         velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
 
         transform.position += velocity * Time.deltaTime;
@@ -55,6 +67,8 @@ public class BirdMovement : MonoBehaviour {
             angle = Mathf.Lerp(0, -90, -velocity.y / maxSpeed);
         }
 
-        transform.rotation = Quaternion.Euler(0, 0, angle);
+        transform.rotation = Quaternion.Euler(0, 0, angle);*/
+
+
 	}
 }

@@ -308,6 +308,9 @@ MonoBehaviour:
   flapVelocity: {x: 0, y: .0500000007, z: 0}
   maxSpeed: 3
   forwardSpeed: 1
+  oldPos: {x: 0, y: 0, z: 0}
+  posDifference: {x: 0, y: 0, z: 0}
+  ypos: 1
 --- !u!1 &468941555
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,6 +397,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sensitivity: 100
   loudness: 0
+  loudnessThreshold: 3
   frequency: 0
   samplerate: 11024
 --- !u!4 &483807959
@@ -1150,7 +1154,7 @@ Transform:
   m_GameObject: {fileID: 1546052354}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -.180000007, y: .100000001, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: .5, y: .5, z: .5}
   m_Children: []
   m_Father: {fileID: 311875817}
   m_RootOrder: 0
