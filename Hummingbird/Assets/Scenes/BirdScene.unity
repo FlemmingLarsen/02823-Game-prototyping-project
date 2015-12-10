@@ -155,6 +155,7 @@ MonoBehaviour:
   innerSpriteBar: {fileID: 1378139583}
   health: 1
   offset: 0
+  screenSize: {x: 0, y: 0, z: 0}
 --- !u!1 &633990988
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,7 +179,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 633990988}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 454984541}
@@ -206,9 +207,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: e3b23abeee7d34e5aa7830a76306ceb5, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: .156320825, g: .691176474, b: .137218863, a: 1}
 --- !u!1 &953657737
 GameObject:
   m_ObjectHideFlags: 0

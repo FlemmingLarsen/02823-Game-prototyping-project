@@ -18,7 +18,7 @@ public class Note : MonoBehaviour {
 		}
 
 		if (transform.localPosition.x < noteSpawner.bird.transform.position.x && isCounted == false){
-			noteSpawner.healthBar.health -= 0.1f;
+			noteSpawner.healthBar.health -= 0.01f;
 			isCounted = true;
 		}
 	}

@@ -17,12 +17,14 @@ public class HealthBar : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-
+		
+		//Make sure the health bar is in the upper left corner of the screen. 
 		Camera camera = FindObjectOfType<Camera>();
 		screenSize = camera.ScreenToWorldPoint(new Vector3(Screen.width,Screen.height,camera.nearClipPlane));
 		transform.position = new Vector3 (-screenSize.x + xOffset*barSize, screenSize.y + yOffset*barSize, 0);
-				
+
 		innerSpriteBar = this.gameObject.transform.GetChild (0);
+
 	}
 	
 	// Update is called once per frame
