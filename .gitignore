@@ -2,3 +2,6 @@ Hummingbird/Library
 Hummingbird/Temp
 ClonyBird/Library
 ClonyBird/Temp
+*.sln
+*.userprefs
+*.csproj
