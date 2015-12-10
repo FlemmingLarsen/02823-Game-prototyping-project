@@ -15,4 +15,8 @@ public class Note : MonoBehaviour {
 			noteSpawner.RecycleNote (this);
 		}
 	}
+
+	void OnTriggerEnter2D(Collider2D collider){
+		noteSpawner.RecycleNote(this);
+	}
 }
