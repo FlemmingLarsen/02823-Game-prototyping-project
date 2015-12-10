@@ -326,13 +326,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fff32d21d4f1342e99330c2b0014798b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabs:
-  - {fileID: 171364, guid: 028fbad5db5e14e0da78a6bff4c89cca, type: 2}
+  prefab: {fileID: 11471828, guid: 028fbad5db5e14e0da78a6bff4c89cca, type: 2}
+  notes:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   delay: 2
   isActive: 1
-  noteCluster: 5
-  offset: .5
   spawnPoint: {x: 0, y: 0, z: 0}
+  destroyPoint: {x: 0, y: 0, z: 0}
+  screenSize: {x: 0, y: 0, z: 0}
+  offset: .5
 --- !u!4 &1378139583
 Transform:
   m_ObjectHideFlags: 0

@@ -1,47 +1,71 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
+
 
 public class NoteSpawner : MonoBehaviour {
 
-	public GameObject[] prefabs;
+	public Note prefab;
+	public GameObject[] notes;
 	public float delay = 8.0f;
+	public static int noteCluster = 5;
 	public bool isActive = true;
-	public int noteCluster = 5;
-	public float offset = 0.01f;
+	private float spawnOffset = 1.0f;
 
 	public Vector3 spawnPoint;
+	public Vector3 destroyPoint;
+
+	public Vector3 screenSize;
+	public float offset = 0f;
+
+	private List <Note> noteList;
+
+
+	private Note CreateNote(){
+		Note note = Instantiate (prefab);
+		note.noteSpawner = this;
+		return note;
+	}
+
+	public void RecycleNote(Note note){
+		Destroy(note.gameObject);
+	}
 	
 	// Use this for initialization
 	void Start () {
 
-		spawnPoint = transform.position;
+		Camera camera = FindObjectOfType<Camera>();
+		screenSize = camera.ScreenToWorldPoint(new Vector3(Screen.width,Screen.height,camera.nearClipPlane));
+
+		spawnPoint = new Vector3(screenSize.x, 0, 0);
+
+		destroyPoint = new Vector3(-screenSize.x, 0, 0);
+
 		StartCoroutine (NoteGenerator ());
 	
 	}
 
-	IEnumerator NoteGenerator() {
+	void Update (){
+	}
 
-		yield return new WaitForSeconds (delay);
+	System.Collections.IEnumerator NoteGenerator() {
+		while (true) {
 
-		float notes = noteCluster;
+			yield return new WaitForSeconds (delay);
 
-		if (isActive) {
+			Vector3 notePos = spawnPoint;
 
-			while (notes >= 0) {
+			if (isActive) {
 
-				yield return new WaitForSeconds (delay/2);
+				for (int n = 0; n < noteCluster; n++) {
 
-				var newTransform = transform;
+					yield return new WaitForSeconds (delay / 2);
 
-				Instantiate(prefabs[0], transform.position, Quaternion.identity);
-				transform.position =  new Vector3(transform.position.x, transform.position.y + offset, transform.position.z);
-				notes--;
+					Note note = CreateNote();
+					note.transform.position = notePos;
+					notePos.y += spawnOffset;
 
+				}
 			}
-			transform.position = spawnPoint;
 		}
-
-
-		StartCoroutine (NoteGenerator ());
 	}
 }

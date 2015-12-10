@@ -3,19 +3,16 @@ using System.Collections;
 
 public class Note : MonoBehaviour {
 
-	public Vector2 velocity = Vector2.zero;
-	private Rigidbody2D body2d;
+	public NoteSpawner noteSpawner; 
 
-	// Use this for initialization
-	void Awake () {
-
-		body2d = GetComponent<Rigidbody2D>();
-	
-	}
+	public Vector3 velocity = Vector3.zero;
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+		transform.localPosition += velocity * Time.fixedDeltaTime;
 
-		body2d.velocity = velocity; 
+		if (transform.localPosition.x < noteSpawner.destroyPoint.x) {
+			noteSpawner.RecycleNote (this);
+		}
 	}
 }

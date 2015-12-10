@@ -9,9 +9,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 413710}
   - 212: {fileID: 21215900}
-  - 50: {fileID: 5050990}
   - 61: {fileID: 6189248}
   - 114: {fileID: 11471828}
+  - 114: {fileID: 11466414}
   m_Layer: 0
   m_Name: Note
   m_TagString: Untagged
@@ -31,22 +31,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!50 &5050990
-Rigidbody2D:
-  serializedVersion: 2
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 171364}
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: .0500000007
-  m_GravityScale: 0
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 2
 --- !u!61 &6189248
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -55,11 +39,24 @@ BoxCollider2D:
   m_GameObject: {fileID: 171364}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 2.55999994, y: 2.5599997}
+--- !u!114 &11466414
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 171364}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a5d7b16ad0874c74a224446cc2ce71f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  screenSize: {x: 100, y: 100, z: 0}
+  offset: 10
 --- !u!114 &11471828
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -71,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1809b233e99d42b08305e75895757f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: {x: -1, y: 0}
+  velocity: {x: -1, y: 0, z: 0}
 --- !u!212 &21215900
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -108,6 +105,22 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Constraints
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: screenSize.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: screenSize.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
