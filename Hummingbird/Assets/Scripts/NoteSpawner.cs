@@ -17,6 +17,9 @@ public class NoteSpawner : MonoBehaviour {
 	public Vector3 screenSize;
 	public float offset = 0f;
 
+	public Transform bird;
+	public HealthBar healthBar;
+
 	private Stack<Note> objectPool = new Stack<Note>();
 
 	private Note CreateNote(){
@@ -24,6 +27,7 @@ public class NoteSpawner : MonoBehaviour {
 
 			Note note = Instantiate (prefab);
 			note.noteSpawner = this;
+
 			return note;
 		}
 
@@ -31,6 +35,7 @@ public class NoteSpawner : MonoBehaviour {
 	}
 
 	public void RecycleNote(Note note){
+		note.isCounted = false;
 		objectPool.Push(note);
 	}
 	

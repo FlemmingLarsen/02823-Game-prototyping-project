@@ -3,24 +3,24 @@ using System.Collections;
 
 public class BirdControl : MonoBehaviour {
 
-	private Rigidbody2D rb;
+	private Rigidbody2D bird;
 	public float verticalvel;
 
 	void Awake (){
-		rb = GetComponent<Rigidbody2D> ();
+		bird = GetComponent<Rigidbody2D> ();
 	}
 
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown(KeyCode.UpArrow)){
-			rb.velocity = new Vector2(0, verticalvel);
-			            }
+			bird.velocity = new Vector2(0, verticalvel);
+		}
 			
 		if (Input.GetKeyDown(KeyCode.DownArrow)){
-				rb.velocity = new Vector2(0,-verticalvel);
+				 bird.velocity = new Vector2(0,-verticalvel);
 		}
 		if (Input.GetKeyUp (KeyCode.UpArrow) || Input.GetKeyUp (KeyCode.DownArrow)) {
-			rb.velocity = (new Vector2 (0, 0));
+			bird.velocity = (new Vector2 (0, 0));
 		}
 
 

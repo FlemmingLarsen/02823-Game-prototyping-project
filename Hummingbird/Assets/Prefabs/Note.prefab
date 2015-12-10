@@ -68,6 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1809b233e99d42b08305e75895757f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noteSpawner: {fileID: 0}
   velocity: {x: -1, y: 0, z: 0}
 --- !u!212 &21215900
 SpriteRenderer:
