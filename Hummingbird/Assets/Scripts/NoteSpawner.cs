@@ -17,17 +17,21 @@ public class NoteSpawner : MonoBehaviour {
 	public Vector3 screenSize;
 	public float offset = 0f;
 
-	private List <Note> noteList;
-
+	private Stack<Note> objectPool = new Stack<Note>();
 
 	private Note CreateNote(){
-		Note note = Instantiate (prefab);
-		note.noteSpawner = this;
-		return note;
+		if (objectPool.Count == 0) {
+
+			Note note = Instantiate (prefab);
+			note.noteSpawner = this;
+			return note;
+		}
+
+		return objectPool.Pop();
 	}
 
 	public void RecycleNote(Note note){
-		Destroy(note.gameObject);
+		objectPool.Push(note);
 	}
 	
 	// Use this for initialization
