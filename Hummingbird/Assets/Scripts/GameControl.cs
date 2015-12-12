@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 
 public class GameControl : MonoBehaviour {
@@ -10,6 +11,7 @@ public class GameControl : MonoBehaviour {
 	public const int noteCluster = 5;
 	public bool isActive = true;
 	private float spawnOffset = 1.0f;
+	public bool gameOver = false;
 
 	public Vector3 spawnPoint;
 	public Vector3 destroyPoint;
@@ -20,6 +22,7 @@ public class GameControl : MonoBehaviour {
 	public Transform bird;
 	public HealthBar healthBar;
 	public Score score;
+	public Text gameOverText;
 
 	private Stack<Note> objectPool = new Stack<Note>();
 
@@ -37,7 +40,7 @@ public class GameControl : MonoBehaviour {
 		if (objectPool.Count == 0) {
 
 			Note note = Instantiate (prefab);
-			note.noteSpawner = this;
+			note.gameControl = this;
 
 			return note;
 		}
@@ -65,11 +68,43 @@ public class GameControl : MonoBehaviour {
 
 		destroyPoint = new Vector3(-screenSize.x, 0, 0);
 
+		gameOverText.gameObject.SetActive (false);
+
 		StartCoroutine (NoteGenerator ());
+
 	
 	}
 
+
 	void Update (){
+		if (gameOver) {
+			if (Input.anyKeyDown){
+				ResetGame();
+			}
+		}
+		else if (healthBar.health <= 0.0f) {
+			GameOver ();
+		}
+		
+	}
+
+	void ResetGame(){
+
+		gameOverText.gameObject.SetActive (false);
+		Time.timeScale = 1.0f;
+		isActive = true;
+		healthBar.health = 1.0f;
+		gameOver = false;
+
+	}
+
+	void GameOver(){
+
+		gameOverText.gameObject.SetActive (true);
+		Time.timeScale = 0.0f;
+		gameOver = true;
+		isActive = false;
+
 	}
 	
 	System.Collections.IEnumerator NoteGenerator() {

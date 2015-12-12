@@ -21,6 +21,8 @@ public class Score : MonoBehaviour {
 	void Start () {
 
 		scoreText = GetComponent<Text> ();
+		scoreText.text = "Score: " + score.ToString ();
+
 	}
 	
 	// Update is called once per frame

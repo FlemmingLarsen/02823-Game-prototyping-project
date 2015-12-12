@@ -8,6 +8,8 @@ public class Note : MonoBehaviour {
 	public Vector3 velocity = Vector3.zero;
 
 	public bool isCounted = false;
+
+	public float healthDecrement = 0.4f;
 	
 	// Update is called once per frame
 	void FixedUpdate () {
@@ -18,9 +20,16 @@ public class Note : MonoBehaviour {
 		}
 
 		if (transform.localPosition.x < gameControl.bird.transform.position.x && isCounted == false){
-			gameControl.healthBar.health -= 0.01f;
+			gameControl.healthBar.health -= healthDecrement;
 			isCounted = true;
 		}
+	}
+
+	void Update(){
+		if (gameControl.gameOver) {
+			gameControl.RecycleNote(this);
+		}
+
 	}
 
 	void OnTriggerEnter2D(Collider2D collider){
