@@ -621,6 +621,7 @@ MonoBehaviour:
   - {fileID: 0}
   delay: 2
   isActive: 1
+  gameOver: 0
   spawnPoint: {x: 0, y: 0, z: 0}
   destroyPoint: {x: 0, y: 0, z: 0}
   screenSize: {x: 0, y: 0, z: 0}
@@ -628,7 +629,7 @@ MonoBehaviour:
   bird: {fileID: 953657740}
   healthBar: {fileID: 454984543}
   score: {fileID: 1161420763}
-  gameOverText: {fileID: 0}
+  gameOverText: {fileID: 661295886}
 --- !u!4 &1378139583
 Transform:
   m_ObjectHideFlags: 0
