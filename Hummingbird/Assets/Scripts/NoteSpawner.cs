@@ -19,6 +19,7 @@ public class NoteSpawner : MonoBehaviour {
 
 	public Transform bird;
 	public HealthBar healthBar;
+	public Score score;
 
 	private Stack<Note> objectPool = new Stack<Note>();
 
@@ -93,6 +94,7 @@ public class NoteSpawner : MonoBehaviour {
 					// Make sure high starting sequences stay above bottom of screen.
 					notePos.y = Random.Range(-screenSize.y + yRange, screenSize.y - spawnOffset);
 				} else{
+					// Flat sequences.  
 					notePos.y = Random.Range (-screenSize.y + spawnOffset, screenSize.y - spawnOffset);
 				}
 

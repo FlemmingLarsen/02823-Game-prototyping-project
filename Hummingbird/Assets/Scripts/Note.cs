@@ -25,5 +25,6 @@ public class Note : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D collider){
 		noteSpawner.RecycleNote(this);
+		noteSpawner.score.IncrementScore();
 	}
 }
