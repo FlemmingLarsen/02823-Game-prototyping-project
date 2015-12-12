@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 
-public class NoteSpawner : MonoBehaviour {
+public class GameControl : MonoBehaviour {
 
 	public Note prefab;
 	public GameObject[] notes;
