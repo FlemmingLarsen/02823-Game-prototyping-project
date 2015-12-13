@@ -34,7 +34,11 @@ public class HealthBar : MonoBehaviour {
 
 		offset = ((health - 1.0f) / 2.0f) * barSize;
 
-		innerSpriteBar.transform.localPosition = new Vector3 (offset, 0, 0);
-
+		if (health >= 0) { 
+			innerSpriteBar.transform.localPosition = new Vector3 (offset, 0, 0);
+		} else {
+			innerSpriteBar.localScale = new Vector3 (0,1,1);
+		}
+	
 	}
 }
