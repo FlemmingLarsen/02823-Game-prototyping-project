@@ -9,9 +9,7 @@ public class Note : MonoBehaviour
     public Vector3 velocity = Vector3.zero;
 
     public bool isCounted = false;
-
-    public float healthDecrement = 0.4f;
-
+	
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -24,7 +22,7 @@ public class Note : MonoBehaviour
 
         if (transform.localPosition.x < gameControl.bird.transform.position.x && isCounted == false)
         {
-            gameControl.healthBar.health -= healthDecrement;
+            gameControl.healthBar.health -= gameControl.healthDecrement;
             isCounted = true;
         }
     }
