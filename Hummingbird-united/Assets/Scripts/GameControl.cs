@@ -96,7 +96,9 @@ public class GameControl : MonoBehaviour {
 		healthBar.health = 1.0f;
 		gameOver = false;
 
-	}
+        float flySound = 1.0f;
+        OSCHandler.Instance.SendMessageToClient("SuperCollider", "/fly", flySound);
+    }
 
 	void GameOver(){
 
@@ -105,7 +107,15 @@ public class GameControl : MonoBehaviour {
 		gameOver = true;
 		isActive = false;
 
-	}
+        //Osc send
+        float flyStop = 1.0f;
+        OSCHandler.Instance.SendMessageToClient("SuperCollider", "/nofly", flyStop);
+
+        //Osc send
+        float gameOverSound = 1.0f;
+        OSCHandler.Instance.SendMessageToClient("SuperCollider", "/gameover", gameOverSound);
+
+    }
 	
 	System.Collections.IEnumerator NoteGenerator() {
 		while (true) {

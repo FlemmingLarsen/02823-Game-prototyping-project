@@ -26,6 +26,9 @@ public class Note : MonoBehaviour
         {
             gameControl.healthBar.health -= healthDecrement;
             isCounted = true;
+            //Osc send
+            float noteloss= 1.0f;
+            OSCHandler.Instance.SendMessageToClient("SuperCollider", "/notedestroy", noteloss);
         }
     }
 
@@ -45,5 +48,9 @@ public class Note : MonoBehaviour
         //Osc send
         float notePickup = 1.0f;
         OSCHandler.Instance.SendMessageToClient("SuperCollider", "/note", notePickup);
+
+        //Init fly sound
+        float flySound = 1.0f;
+        OSCHandler.Instance.SendMessageToClient("SuperCollider", "/fly", flySound);
     }
 }
