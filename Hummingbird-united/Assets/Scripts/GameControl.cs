@@ -96,6 +96,7 @@ public class GameControl : MonoBehaviour {
 		healthBar.health = 1.0f;
 		gameOver = false;
 
+        //Osc send
         float flySound = 1.0f;
         OSCHandler.Instance.SendMessageToClient("SuperCollider", "/fly", flySound);
     }
@@ -106,10 +107,6 @@ public class GameControl : MonoBehaviour {
 		Time.timeScale = 0.0f;
 		gameOver = true;
 		isActive = false;
-
-        //Osc send
-        float flyStop = 1.0f;
-        OSCHandler.Instance.SendMessageToClient("SuperCollider", "/nofly", flyStop);
 
         //Osc send
         float gameOverSound = 1.0f;

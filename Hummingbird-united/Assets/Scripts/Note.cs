@@ -48,9 +48,5 @@ public class Note : MonoBehaviour
         //Osc send
         float notePickup = 1.0f;
         OSCHandler.Instance.SendMessageToClient("SuperCollider", "/note", notePickup);
-
-        //Init fly sound
-        float flySound = 1.0f;
-        OSCHandler.Instance.SendMessageToClient("SuperCollider", "/fly", flySound);
     }
 }

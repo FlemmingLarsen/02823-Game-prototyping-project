@@ -150,12 +150,12 @@ OSCdef.new(
 
 OSCdef.new(
 \gameover,
-	{arg msg;
+	{arg msg, midinote;
 		[msg].postln;
+		y.free;
 
-			[24, 32, 40, 50].do{
-			arg midinote;
-			Synth.new(\gameoversynth, [\freq, midinote.midicps]);
+		[24, 32, 40, 50].do{
+		Synth.new(\gameoversynth, [\freq, midinote.midicps]);
 		}
 	},
 	'/gameover',
@@ -185,16 +185,6 @@ OSCdef.new(
 	nil, 57120
 );
 
-OSCdef.new(
-\nofly,
-	{arg msg;
-		[msg].postln;
 
-			y.free;
-
-	},
-	'/nofly',
-	nil, 57120
-);
-
+s.plotTree;
 )
