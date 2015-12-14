@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
@@ -109,7 +109,9 @@ public class GameControl : MonoBehaviour {
 		gameOver = false;
 		ChangeLevel (1);
 
-	}
+        float flySound = 1.0f;
+        OSCHandler.Instance.SendMessageToClient("SuperCollider", "/fly", flySound);
+    }
 
 	void GameOver(){
 
@@ -126,6 +128,15 @@ public class GameControl : MonoBehaviour {
 		healthDecrement = 0.1f * (float)level;
 		levelUpText.gameObject.SetActive (false);
 	}
+        //Osc send
+        float flyStop = 1.0f;
+        OSCHandler.Instance.SendMessageToClient("SuperCollider", "/nofly", flyStop);
+
+        //Osc send
+        float gameOverSound = 1.0f;
+        OSCHandler.Instance.SendMessageToClient("SuperCollider", "/gameover", gameOverSound);
+
+    }
 	
 	System.Collections.IEnumerator NoteGenerator() {
 		while (true) {
