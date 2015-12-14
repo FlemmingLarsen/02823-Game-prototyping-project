@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
@@ -6,12 +6,14 @@ using UnityEngine.UI;
 public class GameControl : MonoBehaviour {
 
 	public Note prefab;
-	public GameObject[] notes;
+    public GameObject[] notes;
 	public float delay = 8.0f;
 	public const int noteCluster = 5;
 	public bool isActive = true;
 	private float spawnOffset = 1.0f;
 	public bool gameOver = false;
+	private int level = 1;
+	public float healthDecrement = 0.05f;
 
 	public Vector3 spawnPoint;
 	public Vector3 destroyPoint;
@@ -23,6 +25,7 @@ public class GameControl : MonoBehaviour {
 	public HealthBar healthBar;
 	public Score score;
 	public Text gameOverText;
+	public Text levelText;
 
 	private Stack<Note> objectPool = new Stack<Note>();
 
@@ -34,7 +37,7 @@ public class GameControl : MonoBehaviour {
 	private static float[] noteseq5 = new float[noteCluster]{4.0f,3.0f,2.0f,1.0f,0.0f}; // Decreasing
 	private static float[] noteseq6 = new float[noteCluster]{0.0f,0.0f,0.0f,0.0f,0.0f}; // Flat
 
-	private float[][] seqsList = new float[][]{noteseq1, noteseq2, noteseq3, noteseq4, noteseq5, noteseq6};
+	private float[][] seqsList = new float[][]{noteseq6, noteseq3, noteseq1, noteseq5, noteseq4, noteseq2};
 
 	private Note CreateNote(){
 		if (objectPool.Count == 0) {
@@ -53,7 +56,6 @@ public class GameControl : MonoBehaviour {
 	public void RecycleNote(Note note){
 
 		note.gameObject.SetActive (false);
-
 		note.isCounted = false;
 		objectPool.Push(note);
 	}
@@ -77,6 +79,14 @@ public class GameControl : MonoBehaviour {
 
 
 	void Update (){
+
+		if ((score.score % (200*level)) == 0 & level < 3 & score.score > 0) {
+			level += 1;
+			ChangeLevel(level);
+		}
+
+		levelText.text = "Level " + level.ToString ();
+
 		if (gameOver) {
 			if (Input.anyKeyDown){
 				ResetGame();
@@ -95,8 +105,13 @@ public class GameControl : MonoBehaviour {
 		isActive = true;
 		healthBar.health = 1.0f;
 		gameOver = false;
+		ChangeLevel (1);
+        score.ResetScore();
 
-	}
+        //Osc send
+        float flySound = 1.0f;
+        OSCHandler.Instance.SendMessageToClient("SuperCollider", "/fly", flySound);
+    }
 
 	void GameOver(){
 
@@ -105,23 +120,53 @@ public class GameControl : MonoBehaviour {
 		gameOver = true;
 		isActive = false;
 
+        //Osc send
+        float gameOverSound = 1.0f;
+        OSCHandler.Instance.SendMessageToClient("SuperCollider", "/gameover", gameOverSound);
+    }
+
+	void ChangeLevel(int level){
+		level += 1;
+		healthDecrement = 0.1f * (float)level;
 	}
+
 	
 	System.Collections.IEnumerator NoteGenerator() {
 		while (true) {
-
+			
+			
 			yield return new WaitForSeconds (delay);
 
 			Vector3 notePos = spawnPoint;
 
 			if (isActive) {
 
-				int noteSeq = Random.Range(0, seqsList.Length);
+				int noteSeq = Random.Range(0, level*2);
 
 				float yRange = (float) noteCluster * spawnOffset;
 
+
+				switch(noteSeq){
+				
+				// Make sure flat sequences are completely on screen.  
+				case 0:
+					notePos.y = Random.Range (-screenSize.y + spawnOffset, screenSize.y - spawnOffset);
+					break;
+				// Make sure low starting sequences stay below top of screen.
+				case 1:
+				case 2:
+				case 5:
+					notePos.y = Random.Range(-screenSize.y + spawnOffset , screenSize.y - yRange);
+					break;
+				// Make sure high starting sequences stay above bottom of screen.
+				case 3:
+				case 4:
+					notePos.y = Random.Range(-screenSize.y + yRange, screenSize.y - spawnOffset);
+					break;
+				}
+				/*
 				// Make sure all notes are on screen.						
-				if (noteSeq < 3){
+				if (noteSeq == 1){
 					// Make sure low starting sequences stay below top of screen.
 					notePos.y = Random.Range(-screenSize.y + spawnOffset , screenSize.y - yRange);
 				
@@ -132,7 +177,7 @@ public class GameControl : MonoBehaviour {
 					// Flat sequences.  
 					notePos.y = Random.Range (-screenSize.y + spawnOffset, screenSize.y - spawnOffset);
 				}
-
+				*/
 
 				for (int n = 0; n < noteCluster; n++) {
 

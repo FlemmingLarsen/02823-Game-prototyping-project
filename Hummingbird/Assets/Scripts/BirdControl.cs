@@ -8,7 +8,7 @@ public class BirdControl : MonoBehaviour {
 
 	void Awake (){
 		bird = GetComponent<Rigidbody2D> ();
-	}
+    }
 
 	// Update is called once per frame
 	void Update () {
