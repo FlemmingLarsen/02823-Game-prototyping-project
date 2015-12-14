@@ -121,7 +121,10 @@ public class GameControl : MonoBehaviour {
 		gameOver = true;
 		isActive = false;
 
-	}
+        //Osc send
+        float gameOverSound = 1.0f;
+        OSCHandler.Instance.SendMessageToClient("SuperCollider", "/gameover", gameOverSound);
+    }
 
 	void ChangeLevel(int level){
 		levelUpText.gameObject.SetActive (true);
@@ -129,11 +132,7 @@ public class GameControl : MonoBehaviour {
 		healthDecrement = 0.1f * (float)level;
 		levelUpText.gameObject.SetActive (false);
 	}
-        //Osc send
-        float gameOverSound = 1.0f;
-        OSCHandler.Instance.SendMessageToClient("SuperCollider", "/gameover", gameOverSound);
 
-    }
 	
 	System.Collections.IEnumerator NoteGenerator() {
 		while (true) {
