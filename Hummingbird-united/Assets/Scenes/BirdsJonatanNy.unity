@@ -211,7 +211,8 @@ AudioSource:
   m_GameObject: {fileID: 584354939}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24378770, guid: 0c96b7897530e414c8b2c87de0e2f6de,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -419,6 +420,7 @@ GameObject:
   - 50: {fileID: 953657743}
   - 114: {fileID: 953657744}
   - 114: {fileID: 953657745}
+  - 114: {fileID: 953657746}
   m_Layer: 0
   m_Name: Bird
   m_TagString: Untagged
@@ -555,6 +557,17 @@ MonoBehaviour:
   oldPos: {x: 0, y: 0, z: 0}
   posDifference: {x: 0, y: 0, z: 0}
   ypos: 1
+--- !u!114 &953657746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 953657737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79f0160dcb2e6b46a3415b393256b4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1161420761
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,6 +665,8 @@ GameObject:
   - 92: {fileID: 1353758331}
   - 124: {fileID: 1353758330}
   - 81: {fileID: 1353758329}
+  - 114: {fileID: 1353758335}
+  - 114: {fileID: 1353758334}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -726,6 +741,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!114 &1353758334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1353758328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bf68c6a3b5cc6e4da01f7e0bb4a86b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1353758335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1353758328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ef40906edc95154681aa3848a15606a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1378139581
 GameObject:
   m_ObjectHideFlags: 0
