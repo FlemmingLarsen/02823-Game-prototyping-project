@@ -200,7 +200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sensitivity: 100
   loudness: 0
-  loudnessThreshold: 2
+  loudnessThreshold: 1
   frequency: 0
   samplerate: 11024
 --- !u!82 &584354942
@@ -214,10 +214,10 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 0
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   Priority: 128
   DopplerLevel: 1
@@ -652,6 +652,8 @@ GameObject:
   - 92: {fileID: 1353758331}
   - 124: {fileID: 1353758330}
   - 81: {fileID: 1353758329}
+  - 114: {fileID: 1353758335}
+  - 114: {fileID: 1353758334}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -726,6 +728,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!114 &1353758334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1353758328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ef40906edc95154681aa3848a15606a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1353758335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1353758328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bf68c6a3b5cc6e4da01f7e0bb4a86b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1378139581
 GameObject:
   m_ObjectHideFlags: 0

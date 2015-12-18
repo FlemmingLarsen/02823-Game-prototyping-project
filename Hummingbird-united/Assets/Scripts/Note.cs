@@ -42,5 +42,8 @@ public class Note : MonoBehaviour
     {
         gameControl.RecycleNote(this);
         gameControl.score.IncrementScore();
+        //Osc send
+        float notePickup = 1.0f;
+        OSCHandler.Instance.SendMessageToClient("SuperCollider", "/note", notePickup);
     }
 }
